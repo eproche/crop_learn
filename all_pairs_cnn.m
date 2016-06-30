@@ -1,13 +1,13 @@
-%% Load the images
+global path_var model_var res_var
 
 if 0 == 0
-	down = image_files('/u/eroche/matlab/orientation/training/walker/back/down/');
-	up = image_files('/u/eroche/matlab/orientation/training/walker/back/up/');
-	left = image_files('/u/eroche/matlab/orientation/training/walker/back/left/');
-	right = image_files('/u/eroche/matlab/orientation/training/walker/back/right/');
-	shrink = image_files('/u/eroche/matlab/orientation/training/walker/back/shrink/');
-	expand = image_files('/u/eroche/matlab/orientation/training/walker/back/expand/');
-	orig = image_files('/u/eroche/matlab/orientation/training/walker/back/orig/');
+	down = image_files(strcat('/stash/mm-group/evan/crop_learn/data/fullset/training/',path_var,'/down/'));
+	up = image_files(strcat('/stash/mm-group/evan/crop_learn/data/fullset/training/',path_var,'/up/'));
+	left = image_files(strcat('/stash/mm-group/evan/crop_learn/data/fullset/training/',path_var,'/left/'));
+	right = image_files(strcat('/stash/mm-group/evan/crop_learn/data/fullset/training/',path_var,'/right/'));
+	shrink = image_files(strcat('/stash/mm-group/evan/crop_learn/data/fullset/training/',path_var,'/shrink/'));
+	expand = image_files(strcat('/stash/mm-group/evan/crop_learn/data/fullset/training/',path_var,'/expand/'));
+	orig = image_files(strcat('/stash/mm-group/evan/crop_learn/data/fullset/training/',path_var,'/orig/'));
 %%	
     filenames = [down,up,left,right,shrink,expand,orig];
 	hogs = load_cnn_data(filenames);
@@ -41,4 +41,4 @@ for i = 1:21
 
     clear first second predictions scores label_data hog_data;
 end
-save('svm_model_cnn_b.mat','svm_model')
+save(model_var,'svm_model')
