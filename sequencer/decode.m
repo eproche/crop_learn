@@ -1,4 +1,5 @@
 function name = decode(a)
+	
 	if a == 1
 		name = 'Up';
 	elseif a == 2
@@ -13,4 +14,6 @@ function name = decode(a)
 		name = 'Shrink';
 	elseif a == 7
 		name = 'No Change';
+	elseif a == 0
+		name = 'Past image bounds'
 	end

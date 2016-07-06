@@ -1,6 +1,6 @@
 function [] = cropper(scale_factor,orig_factor,fli,big_switch)
 %CROPPER makes datasets of cropped images, double scale_factor, double orig_factor, fli(-1,0,1),big_switch(0,1)
-Path = 'PortlandNonProtoDogWalking';
+Path = 'PortlandSimpleDogWalking';
 rng('shuffle');
 imgType = '*.jpg'; 
 labelType = '*.labl';
@@ -40,10 +40,10 @@ end
 
 
 for i = 1:len_folder%cropping
-    folder = '/stash/mm-group/evan/crop_learn/data/non_proto/test/';
-    % if split(i) > training_split
-    %     folder = '/stash/mm-group/evan/crop_learn/data/fullset/test/';
-    % end
+    folder = '/stash/mm-group/evan/crop_learn/data/fullset/training/';
+    if split(i) > training_split
+        folder = '/stash/mm-group/evan/crop_learn/data/fullset/test/';
+    end
     num_objects = record(i).num_obs;
     baseFile = num2str(i);
     for k = 1:num_objects
