@@ -1,13 +1,13 @@
 load(model_var,'svm_model');
 
-down = image_files(strcat('/stash/mm-group/evan/crop_learn/data/fullset/test/',path_var,'/down/'));
-up = image_files(strcat('/stash/mm-group/evan/crop_learn/data/fullset/test/',path_var,'/up/'));
-left = image_files(strcat('/stash/mm-group/evan/crop_learn/data/fullset/test/',path_var,'/left/'));
-right = image_files(strcat('/stash/mm-group/evan/crop_learn/data/fullset/test/',path_var,'/right/'));
-shrink = image_files(strcat('/stash/mm-group/evan/crop_learn/data/fullset/test/',path_var,'/shrink/'));
-expand = image_files(strcat('/stash/mm-group/evan/crop_learn/data/fullset/test/',path_var,'/expand/'));
-orig = image_files(strcat('/stash/mm-group/evan/crop_learn/data/fullset/test/',path_var,'/orig/'));
-back = image_files(strcat('/stash/mm-group/evan/crop_learn/data/fullset/test/',path_var,'/background/'));
+down = image_files(strcat('/stash/mm-group/evan/crop_learn/data/croptest/test/',path_var,'/down/'));
+up = image_files(strcat('/stash/mm-group/evan/crop_learn/data/croptest/test/',path_var,'/up/'));
+left = image_files(strcat('/stash/mm-group/evan/crop_learn/data/croptest/test/',path_var,'/left/'));
+right = image_files(strcat('/stash/mm-group/evan/crop_learn/data/croptest/test/',path_var,'/right/'));
+shrink = image_files(strcat('/stash/mm-group/evan/crop_learn/data/croptest/test/',path_var,'/shrink/'));
+expand = image_files(strcat('/stash/mm-group/evan/crop_learn/data/croptest/test/',path_var,'/expand/'));
+orig = image_files(strcat('/stash/mm-group/evan/crop_learn/data/croptest/test/',path_var,'/orig/'));
+back = image_files(strcat('/stash/mm-group/evan/crop_learn/data/croptest/test/',path_var,'/background/'));
 
 examples = numel(down)*8;
 
@@ -46,5 +46,5 @@ for i = 1:numel(blocks)
         counts(i,b(k)) = a(k);
     end
 end
-
-save(res_var,'counts','count_mat','vote_mat','score_mat')
+counts
+% save(res_var,'counts','count_mat','vote_mat','score_mat')

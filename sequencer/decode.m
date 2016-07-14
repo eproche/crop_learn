@@ -16,4 +16,6 @@ function name = decode(a)
 		name = 'No Change';
 	elseif a == 0
 		name = 'Past image bounds'
+	elseif a == 8
+		name = 'Background';
 	end

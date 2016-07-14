@@ -23,7 +23,7 @@ if 0 == 0
     end
 %%Read files
 if ~exist('images','var')
-    for i = 1:100 %Range of files to read in 
+    for i = 1:10 %Range of files to read in 
         images{i} = imread(fullfile(Path,imgFolder(i).name));
         temp = fopen(fullfile(Path,labelFolder(i).name));
         temp2 = textscan(temp,'%s','delimiter','|');
@@ -62,7 +62,7 @@ list2 = {{'right','down'},{'right','up'},...
 {'up','shrink'}};
 
 %%main sequence test loop
-for i = 1:100%order of images to try
+for i = 1:10%order of images to try
     disp(i);
     num_objects = record(i).num_obs;
     % generate starting crops 
@@ -181,7 +181,6 @@ for i = 1:100%order of images to try
                 rng('shuffle');
                 r4 = (ratio_max-ratio_min).*rand(4,1)+ratio_min; 
 
-
                 name = decode(class_guess);
                 move_amount = r3(1);
                 x2 = crop(1); y2 = crop(2); w2 = crop(3); h2 = crop(4);
@@ -216,8 +215,10 @@ for i = 1:100%order of images to try
                 elseif class_guess == 6
                     crop = shrink(x2,y2,w2,h2,r3,r4,fli,snew_w,snew_h);
                     loop_scale = loop_scale - 0.05;
+                elseif class_guess == 8;
+                    crop = expand(x2,y2,w2,h2,r3,r4,fli,w2*1.4,h2*1.4);    
                 end
-                
+           
                 new_crop = imcrop(images{i},crop);
                 IOU = bboxOverlapRatio(crop,orig_box);
                 run_IOU = [run_IOU IOU];

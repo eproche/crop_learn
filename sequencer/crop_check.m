@@ -1,8 +1,8 @@
 function [fin_crop,fin_iou,fin_moves] = crop_check(hf,base_image,object_class,label,starting_box,alotted_tries,starting_IOU)
-
-save('/u/eroche/matlab/base_image.mat','base_image');
+%% sub function that returns a new crop and new iou for comparison
+% save('/u/eroche/matlab/base_image.mat','base_image');
 disp(object_class)
-save('/u/eroche/matlab/ground_truth.mat','label');
+% save('/u/eroche/matlab/ground_truth.mat','label');
 disp(starting_box)
 disp(starting_IOU)
 % if ~exist('cnn_svm_model','var')
@@ -70,7 +70,7 @@ fin_crop = [];
 fin_iou = 0;
 fin_moves = 9;
 
-hf = figure('Selected','on')
+
 for ii = 1:9 
     rng('shuffle');
     r4 = (ratio_max-ratio_min).*rand(4,1)+ratio_min;
@@ -139,7 +139,7 @@ for ii = 1:9
         fin_iou = IOU
         fin_moves = total_count
         k = waitforbuttonpress;
-        close
+        close 
         break
     else
         hf, imshow(B5);
