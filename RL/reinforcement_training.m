@@ -14,6 +14,25 @@ cnn_layer = 18;
 cnn_net.layers = cnn_net.layers(1:cnn_layer);
 cd (here);  
 
+move1 = [1,2,3,4,5,6,7,8];
+act1 = linspace(0.1,1,10);
+iou1 = linspace(-0.5,0.5,11);
+move2 = [1,2,3,4,5,6,7,8];
+act2 = linspace(0.1,1,10);
+iou2 = linspace(-0.5,0.5,11);
+curmove = [1,2,3,4,5,6,7,8];
+statespace = combvector(move1,act1,iou1,move2,act2,iou2,curmove);
+
+key = cell(length(statespace),1);
+value = zeros(length(statespace),1);
+for i = 1:length(statespace)
+	key{i} = strcat(num2str(statespace(i,1)),',',num2str(statespace(i,2)),',',num2str(statespace(i,3)),',',...
+	num2str(statespace(i,4)),',',num2str(statespace(i,5)),',',num2str(statespace(i,6)),',',num2str(statespace(i,7)));
+	value(i) = 0.1*rand+0.001;
+end
+
+Qtab = containers.Map(key,value)
+
 
 cd '../../cnn/matconvnet-1.0-beta20/';
 disp('Starting MatConvNet');
@@ -22,9 +41,6 @@ net = vl_simplenn_tidy(load('imagenet-vgg-f.mat'));
 layer = 18;
 net.layers = net.layers(1:layer);
 cd '../../crop/sequencer/'
-
-Qtable = zeros(10,360000);
-actions = linspace(0.1,1,10);
 
 for i = 1:length(episodes)
 	base_image = imread(episodes{i}.impath);

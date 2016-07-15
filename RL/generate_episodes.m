@@ -1,17 +1,16 @@
 
-Path = '/stash/mm-group/evan/crop_learn/data/PortlandSimpleDogWalking';
+%Path = '/stash/mm-group/evan/crop_learn/data/PortlandSimpleDogWalking';
+Path = '/home/evan/matlab/PortlandSimpleDogWalking';
 rng('shuffle');
 imgType = '*.jpg'; 
 labelType = '*.labl';
 imgFolder  = dir(fullfile(Path,imgType));
 labelFolder = dir(fullfile(Path,labelType)); 
 len_folder = length(imgFolder);
-if ~exist('svm_model','var')
-    load(strcat('/stash/mm-group/evan/crop_learn/models/svm_',object_class,'.mat'),'svm_model');
-end 
+
 
 if ~exist('images','var')
-    for i = 1:lenfolder %Range of files to read in 
+    for i = 1:len_folder %Range of files to read in 
         images{i} = imread(fullfile(Path,imgFolder(i).name));
         image_list{i} = fullfile(Path,imgFolder(i).name);
         temp = fopen(fullfile(Path,labelFolder(i).name));
@@ -56,17 +55,17 @@ for i = 1:len_folder%order of images to try
             if strcmp('dog',gen{1}) == 1
                 object = 'dog';
                 if strcmp(gen{2},'walker') == 1
-                    object = 'walker'
+                    object = 'walker';
                 end
             else 
                 continue
             end
-        elseif length(gen) == 1
-        	if strcmp('leash',gen{1}) == 1
-        		object = 'leash'
-        	else 
-        		continue
-        	end
+        % elseif length(gen) == 1
+        % 	if strcmp('leash',gen{1}) == 1
+        % 		object = 'leash';
+        % 	else 
+        % 		continue
+        % 	end
         else 
             continue
         end
@@ -129,9 +128,10 @@ for i = 1:len_folder%order of images to try
             episodes{ep_count}.object = object;
             episodes{ep_count}.ground = orig_box;
             episodes{ep_count}.start = crop;
-            ep_count = ep_count + 1;            
+            ep_count = ep_count + 1;  
+            disp(ep_count);          
         end
 
     end
 end
-save('/u/eroche/matlab/episodes.mat','-struct','episodes');
+save('/home/evan/matlabl/episodes.mat','episodes');
