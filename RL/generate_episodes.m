@@ -1,6 +1,6 @@
 
-%Path = '/stash/mm-group/evan/crop_learn/data/PortlandSimpleDogWalking';
-Path = '/home/evan/matlab/PortlandSimpleDogWalking';
+Path = '/stash/mm-group/evan/crop_learn/data/PortlandSimpleDogWalking';
+%Path = '/home/evan/matlab/PortlandSimpleDogWalking';
 rng('shuffle');
 imgType = '*.jpg'; 
 labelType = '*.labl';
@@ -134,4 +134,4 @@ for i = 1:len_folder%order of images to try
 
     end
 end
-save('/home/evan/matlabl/episodes.mat','episodes');
+save('-v7.3','/u/eroche/matlab/episodes.mat','-struct','episodes');
